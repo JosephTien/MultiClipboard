@@ -114,6 +114,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Storage.saveToShare()
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(didBecomeActiveNotification), name: UIApplication.didBecomeActiveNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(willResignActiveNotification), name: UIApplication.willResignActiveNotification, object: nil)
     }
 
     @objc func log(){
@@ -130,6 +131,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func extraViewSetUp(){
+        clipButton_edit.show()
         clipButton_confirm.hide()
         clipButton_rearrange.hide()
         clipTextView.isSelectable = false
@@ -142,6 +144,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @objc func didBecomeActiveNotification(){
         extraViewSetUp()
+    }
+    
+    @objc func willResignActiveNotification(){
+        confirmClip()
     }
     
     func save(){
