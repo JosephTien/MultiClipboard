@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F6C9F9AA0FB180F620D1827 /* Pods_MultiClipboardTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7526122D2348D6200523170B /* Pods_MultiClipboardTests.framework */; };
+		420B135C69F6802B9B2066B5 /* Pods_MultiClipboardUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 162F06D029C9A9040C162AFE /* Pods_MultiClipboardUITests.framework */; };
+		61B5EDDABF672CCA3232A09A /* Pods_MultiClipboardWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44EC6CBAA0025317D79F6D1F /* Pods_MultiClipboardWidget.framework */; };
 		7C0CC6C921ECE9950046F806 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0CC6C821ECE9950046F806 /* AppDelegate.swift */; };
 		7C0CC6CE21ECE9950046F806 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0CC6CC21ECE9950046F806 /* Main.storyboard */; };
 		7C0CC6D021ECE9970046F806 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C0CC6CF21ECE9970046F806 /* Assets.xcassets */; };
@@ -24,8 +27,10 @@
 		7C1B313F21F1310F009721C9 /* ClipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B313E21F1310F009721C9 /* ClipTableViewCell.swift */; };
 		7C1B314121F23F30009721C9 /* ClipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B314021F23F30009721C9 /* ClipButton.swift */; };
 		7C1B314421F26411009721C9 /* Addon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B314321F26411009721C9 /* Addon.swift */; };
-		7C1B314621F26DB4009721C9 /* UIView+Borders.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B314521F26DB4009721C9 /* UIView+Borders.swift.swift */; };
+		7C1B314621F26DB4009721C9 /* UIView+Borders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B314521F26DB4009721C9 /* UIView+Borders.swift */; };
 		7C81D25521EFA2F5003CF011 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C81D25421EFA2F5003CF011 /* Assets.xcassets */; };
+		7CBE724C2214C63200824FFD /* QRScaner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBE724B2214C63200824FFD /* QRScaner.swift */; };
+		7DBD839B2E1AD1DA8F531AD3 /* Pods_MultiClipboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841E48845D9914E4494BC2CB /* Pods_MultiClipboard.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +72,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C7EE339BF03531CBFA54D3B /* Pods-MultiClipboardWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiClipboardWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-MultiClipboardWidget/Pods-MultiClipboardWidget.release.xcconfig"; sourceTree = "<group>"; };
+		162F06D029C9A9040C162AFE /* Pods_MultiClipboardUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MultiClipboardUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AEA3EF0D9A3D25B65D82517 /* Pods-MultiClipboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiClipboard.release.xcconfig"; path = "Pods/Target Support Files/Pods-MultiClipboard/Pods-MultiClipboard.release.xcconfig"; sourceTree = "<group>"; };
+		44EC6CBAA0025317D79F6D1F /* Pods_MultiClipboardWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MultiClipboardWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AB0B5640393BE5DBB40BAD6 /* Pods-MultiClipboardUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiClipboardUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MultiClipboardUITests/Pods-MultiClipboardUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4C13761C07142C4D369AFBB7 /* Pods-MultiClipboardUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiClipboardUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MultiClipboardUITests/Pods-MultiClipboardUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7526122D2348D6200523170B /* Pods_MultiClipboardTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MultiClipboardTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C0CC6C521ECE9950046F806 /* MultiClipboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiClipboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C0CC6C821ECE9950046F806 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C0CC6CD21ECE9950046F806 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -93,8 +105,14 @@
 		7C1B313E21F1310F009721C9 /* ClipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipTableViewCell.swift; sourceTree = "<group>"; };
 		7C1B314021F23F30009721C9 /* ClipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipButton.swift; sourceTree = "<group>"; };
 		7C1B314321F26411009721C9 /* Addon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Addon.swift; sourceTree = "<group>"; };
-		7C1B314521F26DB4009721C9 /* UIView+Borders.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Borders.swift.swift"; sourceTree = "<group>"; };
+		7C1B314521F26DB4009721C9 /* UIView+Borders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Borders.swift"; sourceTree = "<group>"; };
 		7C81D25421EFA2F5003CF011 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7CBE724B2214C63200824FFD /* QRScaner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScaner.swift; sourceTree = "<group>"; };
+		841E48845D9914E4494BC2CB /* Pods_MultiClipboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MultiClipboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1B2BA0B376F330F3C7A8275 /* Pods-MultiClipboardWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiClipboardWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MultiClipboardWidget/Pods-MultiClipboardWidget.debug.xcconfig"; sourceTree = "<group>"; };
+		A3937644123CA221842E312D /* Pods-MultiClipboardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiClipboardTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MultiClipboardTests/Pods-MultiClipboardTests.release.xcconfig"; sourceTree = "<group>"; };
+		BC5C5267BF70FC047F9D033A /* Pods-MultiClipboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiClipboard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MultiClipboard/Pods-MultiClipboard.debug.xcconfig"; sourceTree = "<group>"; };
+		D1F0DBF25C25EAA05D8D9D0E /* Pods-MultiClipboardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MultiClipboardTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MultiClipboardTests/Pods-MultiClipboardTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DBD839B2E1AD1DA8F531AD3 /* Pods_MultiClipboard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F6C9F9AA0FB180F620D1827 /* Pods_MultiClipboardTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				420B135C69F6802B9B2066B5 /* Pods_MultiClipboardUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C0CC6FD21ECEAB70046F806 /* NotificationCenter.framework in Frameworks */,
+				61B5EDDABF672CCA3232A09A /* Pods_MultiClipboardWidget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +161,7 @@
 				7C0CC6FE21ECEAB70046F806 /* MultiClipboardWidget */,
 				7C0CC6FB21ECEAB70046F806 /* Frameworks */,
 				7C0CC6C621ECE9950046F806 /* Products */,
+				D4182589F6F1735C78A79982 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,6 +186,7 @@
 				7C1B313B21F12C83009721C9 /* Controller */,
 				7C1B314221F263DF009721C9 /* Helper */,
 				7C1B313A21F12C77009721C9 /* App */,
+				7CBE724A2214B7E600824FFD /* Bkup */,
 			);
 			path = MultiClipboard;
 			sourceTree = "<group>";
@@ -189,6 +213,10 @@
 			isa = PBXGroup;
 			children = (
 				7C0CC6FC21ECEAB70046F806 /* NotificationCenter.framework */,
+				841E48845D9914E4494BC2CB /* Pods_MultiClipboard.framework */,
+				7526122D2348D6200523170B /* Pods_MultiClipboardTests.framework */,
+				162F06D029C9A9040C162AFE /* Pods_MultiClipboardUITests.framework */,
+				44EC6CBAA0025317D79F6D1F /* Pods_MultiClipboardWidget.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -246,10 +274,33 @@
 		7C1B314221F263DF009721C9 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				7CBE724B2214C63200824FFD /* QRScaner.swift */,
 				7C1B314321F26411009721C9 /* Addon.swift */,
-				7C1B314521F26DB4009721C9 /* UIView+Borders.swift.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		7CBE724A2214B7E600824FFD /* Bkup */ = {
+			isa = PBXGroup;
+			children = (
+				7C1B314521F26DB4009721C9 /* UIView+Borders.swift */,
+			);
+			path = Bkup;
+			sourceTree = "<group>";
+		};
+		D4182589F6F1735C78A79982 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BC5C5267BF70FC047F9D033A /* Pods-MultiClipboard.debug.xcconfig */,
+				3AEA3EF0D9A3D25B65D82517 /* Pods-MultiClipboard.release.xcconfig */,
+				D1F0DBF25C25EAA05D8D9D0E /* Pods-MultiClipboardTests.debug.xcconfig */,
+				A3937644123CA221842E312D /* Pods-MultiClipboardTests.release.xcconfig */,
+				4C13761C07142C4D369AFBB7 /* Pods-MultiClipboardUITests.debug.xcconfig */,
+				4AB0B5640393BE5DBB40BAD6 /* Pods-MultiClipboardUITests.release.xcconfig */,
+				A1B2BA0B376F330F3C7A8275 /* Pods-MultiClipboardWidget.debug.xcconfig */,
+				0C7EE339BF03531CBFA54D3B /* Pods-MultiClipboardWidget.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,10 +310,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C0CC6ED21ECE9970046F806 /* Build configuration list for PBXNativeTarget "MultiClipboard" */;
 			buildPhases = (
+				B22B78F797FA47B8F6A1862F /* [CP] Check Pods Manifest.lock */,
 				7C0CC6C121ECE9950046F806 /* Sources */,
 				7C0CC6C221ECE9950046F806 /* Frameworks */,
 				7C0CC6C321ECE9950046F806 /* Resources */,
 				7C0CC70B21ECEAB70046F806 /* Embed App Extensions */,
+				3E7B5C5090C533FBDF80A8E0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -278,6 +331,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C0CC6F021ECE9970046F806 /* Build configuration list for PBXNativeTarget "MultiClipboardTests" */;
 			buildPhases = (
+				D605F68389395A8FEE738087 /* [CP] Check Pods Manifest.lock */,
 				7C0CC6D521ECE9970046F806 /* Sources */,
 				7C0CC6D621ECE9970046F806 /* Frameworks */,
 				7C0CC6D721ECE9970046F806 /* Resources */,
@@ -296,6 +350,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C0CC6F321ECE9970046F806 /* Build configuration list for PBXNativeTarget "MultiClipboardUITests" */;
 			buildPhases = (
+				88E176E526CE28F27723D24E /* [CP] Check Pods Manifest.lock */,
 				7C0CC6E021ECE9970046F806 /* Sources */,
 				7C0CC6E121ECE9970046F806 /* Frameworks */,
 				7C0CC6E221ECE9970046F806 /* Resources */,
@@ -314,6 +369,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C0CC70821ECEAB70046F806 /* Build configuration list for PBXNativeTarget "MultiClipboardWidget" */;
 			buildPhases = (
+				4B4C64EC8E505BB031D0B303 /* [CP] Check Pods Manifest.lock */,
 				7C0CC6F621ECEAB70046F806 /* Sources */,
 				7C0CC6F721ECEAB70046F806 /* Frameworks */,
 				7C0CC6F821ECEAB70046F806 /* Resources */,
@@ -420,6 +476,123 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3E7B5C5090C533FBDF80A8E0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MultiClipboard/Pods-MultiClipboard-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MultiClipboard/Pods-MultiClipboard-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4B4C64EC8E505BB031D0B303 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MultiClipboardWidget-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		88E176E526CE28F27723D24E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MultiClipboardUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B22B78F797FA47B8F6A1862F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MultiClipboard-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D605F68389395A8FEE738087 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MultiClipboardTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7C0CC6C121ECE9950046F806 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -432,7 +605,8 @@
 				7C1B314421F26411009721C9 /* Addon.swift in Sources */,
 				7C1B313121F1184E009721C9 /* ViewController.swift in Sources */,
 				7C1B312F21F117F7009721C9 /* Storage.swift in Sources */,
-				7C1B314621F26DB4009721C9 /* UIView+Borders.swift.swift in Sources */,
+				7C1B314621F26DB4009721C9 /* UIView+Borders.swift in Sources */,
+				7CBE724C2214C63200824FFD /* QRScaner.swift in Sources */,
 				7C1B313F21F1310F009721C9 /* ClipTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -627,6 +801,7 @@
 		};
 		7C0CC6EE21ECE9970046F806 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC5C5267BF70FC047F9D033A /* Pods-MultiClipboard.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -647,6 +822,7 @@
 		};
 		7C0CC6EF21ECE9970046F806 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AEA3EF0D9A3D25B65D82517 /* Pods-MultiClipboard.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -667,6 +843,7 @@
 		};
 		7C0CC6F121ECE9970046F806 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1F0DBF25C25EAA05D8D9D0E /* Pods-MultiClipboardTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -687,6 +864,7 @@
 		};
 		7C0CC6F221ECE9970046F806 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3937644123CA221842E312D /* Pods-MultiClipboardTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -707,6 +885,7 @@
 		};
 		7C0CC6F421ECE9970046F806 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C13761C07142C4D369AFBB7 /* Pods-MultiClipboardUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -726,6 +905,7 @@
 		};
 		7C0CC6F521ECE9970046F806 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4AB0B5640393BE5DBB40BAD6 /* Pods-MultiClipboardUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -745,6 +925,7 @@
 		};
 		7C0CC70921ECEAB70046F806 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1B2BA0B376F330F3C7A8275 /* Pods-MultiClipboardWidget.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MultiClipboardWidget/MultiClipboardWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -765,6 +946,7 @@
 		};
 		7C0CC70A21ECEAB70046F806 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C7EE339BF03531CBFA54D3B /* Pods-MultiClipboardWidget.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = MultiClipboardWidget/MultiClipboardWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;

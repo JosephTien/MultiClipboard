@@ -32,6 +32,8 @@ struct Storage: Codable{
         userDefaults!.set(strs, forKey: "strs")
     }
     static func readItemsFromShare(){
-        strs = userDefaults!.array(forKey: "strs") as! [String]
+        if let _strs = userDefaults!.array(forKey: "strs"){
+            strs = _strs as! [String]
+        }
     }
 }

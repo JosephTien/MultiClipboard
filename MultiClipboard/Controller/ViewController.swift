@@ -1,4 +1,5 @@
 import UIKit
+import SocketIO
 
 typealias VC = ViewController
 typealias D = Dimension
@@ -12,8 +13,19 @@ struct Dimension{
     static let space = CGFloat(8)
     static let cornerRadius = CGFloat(15)
 }
-
-
+protocol ClipDelegate {
+    func getAtCellIdx(view: UIView)->Int?
+    func getCell(at: Int)->CTVC?
+    func useCell(at: Int)
+    func addCell()
+    func addCell(str: String)
+    func removeCell(at: Int)
+    func switchCell(at: Int)
+    func rearrangeCells()
+    func editClip()
+    func confirmClip()
+    func clearClip()
+}
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, ClipDelegate{
     private static var _shared: VC? = nil
     static var shared: VC?{get{return _shared}}
@@ -30,10 +42,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     static let y_clipTableView = D.statusBarHeight + D.clipViewHeight + D.ButtonDiameter + D.space * 3
     //--------------------------------------------
     var clipTextView = ClipTextView(
+        x: D.space + D.ButtonDiameter,
+        y: D.statusBarHeight + D.space * 2,
+        width: D.screenWidth - 2 * D.ButtonDiameter - 2 * D.space,
+        height: D.clipViewHeight
+    )
+    var clipButton_manu = ClipButton(
+        x: D.screenWidth - D.ButtonDiameter - D.space,
+        y: D.statusBarHeight + D.space,
+        width: D.ButtonDiameter,
+        height: D.ButtonDiameter,
+        style: .manu,
+        action: {}
+    )
+    var clipButton_sync = ClipButton(
         x: D.space,
         y: D.statusBarHeight + D.space,
-        width: D.screenWidth  - 2 * D.space,
-        height: D.clipViewHeight
+        width: D.ButtonDiameter,
+        height: D.ButtonDiameter,
+        style: .sync,
+        action: {}
     )
     var clipButton_add = ClipButton(
         x: D.screenWidth / 2 - D.ButtonDiameter / 2,
@@ -95,6 +123,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         clipTableView.delegate = self
         clipTableView.dataSource = self
         
+        clipButton_sync.action = {self.syncClipboard()}
+        clipButton_manu.action = {self.showManu()}
         clipButton_add.action = {self.addCell()}
         clipButton_edit.action = {self.editClip()}
         clipButton_confirm.action = {self.confirmClip()}
@@ -102,6 +132,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         clipButton_rearrange.action = {self.rearrangeCells()}
         
         view.addSubview(clipTextView)
+        view.addSubview(clipButton_sync)
+        view.addSubview(clipButton_manu)
         view.addSubview(clipButton_add)
         view.addSubview(clipButton_edit)
         view.addSubview(clipButton_confirm)
@@ -115,10 +147,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(didBecomeActiveNotification), name: UIApplication.didBecomeActiveNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(willResignActiveNotification), name: UIApplication.willResignActiveNotification, object: nil)
-    }
-
-    @objc func log(){
-        print("~")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -154,7 +182,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         Storage.saveToShare()
         Storage.saveToFile()
     }
-    // MARK: - Table view data source
+    // MARK: - Clip TableView data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -170,7 +198,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         VC.clipBoardText = cell?.getText()
         cell?.flash(text: "Copied!")
         clipTextView.text = VC.clipBoardText
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -225,13 +252,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return false
     }
     
-    // MARK: - Clip Text view delegate
+    // MARK: - Clip TextView delegate
     
     func textViewDidFinishEditing(){
         VC.clipBoardText = clipTextView.text
     }
     
-    // MARK: - Clip Table view data source
+    // MARK: - Clip Protocal
     
     func getCell(at: Int)->CTVC?{
         if let cell = clipTableView.cellForRow(at: IndexPath(row: at, section: 0)) as? CTVC{
@@ -267,6 +294,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func useCell(at: Int){
         VC.clipBoardText = getCell(at: at)?.getText()
         clipTextView.text = VC.clipBoardText
+        shareClip()
     }
     func removeCell(at: Int){
         Storage.strs.remove(at: at)
@@ -304,6 +332,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         clipTextView.isSelectable = false
         clipTextView.isEditable = false
         VC.clipBoardText = clipTextView.text
+        shareClip()
     }
     func clearClip(){
         clipTextView.text = ""
@@ -314,19 +343,109 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func getAtCellIdx(view: UIView)->Int?{
         return clipTableView.indexPathForView(view)?.row
     }
-}
-
-
-protocol ClipDelegate {
-    func getAtCellIdx(view: UIView)->Int?
-    func getCell(at: Int)->CTVC?
-    func useCell(at: Int)
-    func addCell()
-    func addCell(str: String)
-    func removeCell(at: Int)
-    func switchCell(at: Int)
-    func rearrangeCells()
-    func editClip()
-    func confirmClip()
-    func clearClip()
+    
+    // MARK: - My Function
+    var manager: SocketManager? = nil
+    var socket: SocketIOClient? = nil
+    var linked = false
+    var uuid = ""
+    func syncClipboard(){
+        if(linked){
+            releaseSocket()
+        }else{
+            let QRHelper = QRScaner()
+            QRHelper.finalHandler = {
+                if(QRHelper.code != ""){
+                    self.buildSocket(QRHelper.code)
+                }else{
+                    self.manualKeyIn(handler: self.buildSocket)
+                }
+            }
+            QRHelper.start(self)
+        }
+    }
+    
+    func buildSocket(_ url: String){
+        let nodes = url.split(separator: "?")
+        if(nodes.count<2){return}
+        let path = String(nodes[0])
+        for param in nodes[1].split(separator: "&"){
+            let comps = param.split(separator: "=")
+            if(comps.count<2){return}
+            if String(comps[0]) == "id"{
+                uuid = String(comps[1])
+            }
+        }
+        manager?.disconnect()
+        manager = SocketManager(socketURL: URL(string: path)!, config: [.log(true), .compress])
+        socket = manager!.defaultSocket
+        socket?.on(clientEvent: .connect) {data, ack in
+            self.clipButton_sync.backgroundColor = UIColor.black
+            self.clipButton_sync.setTitleColor(UIColor.white, for: .normal)
+            self.linked = true
+            self.socket?.emit("require", ["uuid":self.uuid, "ask":true] )
+        }
+        socket?.on("clipboard") {data, ack in
+            let obj = data[0] as! [String: Any]
+            let str = obj["str"] as! String
+            self.clipTextView.text = str
+            VC.clipBoardText = self.clipTextView.text
+        }
+        socket?.on("ask") {data, ack in
+           self.shareClip()
+        }
+        socket?.connect()
+    }
+    
+    func shareClip(){
+        if(linked){
+            socket?.emit("clipboard", ["uuid":uuid, "str": clipTextView.text!, "src": "app"] )
+        }
+    }
+    
+    func releaseSocket(){
+        clipButton_sync.backgroundColor = UIColor.white
+        clipButton_sync.setTitleColor(UIColor.black, for: .normal)
+        linked = false
+        manager?.disconnect()
+        manager = nil
+        socket = nil
+        uuid = ""
+    }
+    
+    func manualKeyIn(handler: @escaping (String)->()) {
+        let keyinController = UIAlertController(
+            title: "手動輸入",
+            message: "",
+            preferredStyle: .alert)
+        
+        keyinController.addTextField {
+            (textField: UITextField!) -> Void in
+            textField.placeholder = "url"
+        }
+        let tf = ((keyinController.textFields?.first)! as UITextField)
+        keyinController.addAction(
+            UIAlertAction(
+                title: "取消",
+                style: .cancel){(action: UIAlertAction!) -> Void in}
+            )
+        keyinController.addAction(
+            UIAlertAction(
+                title: "確定",
+                style: UIAlertAction.Style.default,
+                handler: {(action: UIAlertAction!) -> Void in
+                    handler(tf.text!)
+                }
+            )
+        )
+        self.present(
+            keyinController,
+            animated: true,
+            completion: nil
+        )
+    }
+    
+    func showManu(){
+        
+    }
 }

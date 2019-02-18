@@ -14,6 +14,8 @@ class ClipButton: UIButton{
         case edit
         case rearrange
         case clear
+        case sync
+        case manu
     }
     var action = {}
     convenience init(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, style: Style, action: @escaping ()->()) {
@@ -37,6 +39,12 @@ class ClipButton: UIButton{
             addTarget(self, action: #selector(execute(_:)), for: .touchUpInside)
         case .clear:
             setTitle("⌧", for: .normal)
+            addTarget(self, action: #selector(execute(_:)), for: .touchUpInside)
+        case .sync:
+            setTitle("⎋", for: .normal)
+            addTarget(self, action: #selector(execute(_:)), for: .touchUpInside)
+        case .manu:
+            setTitle("?", for: .normal)
             addTarget(self, action: #selector(execute(_:)), for: .touchUpInside)
         }
         self.action = action

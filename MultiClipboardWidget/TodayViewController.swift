@@ -14,12 +14,13 @@ class Storage{
         }
         userDefaults!.set(strs, forKey: "strs")
     }
-    
     static func readItemsFromShare(){
-        strs = userDefaults!.array(forKey: "strs") as! [String]
+        if let _strs = userDefaults!.array(forKey: "strs"){
+            strs = _strs as! [String]
+        }
     }
 }
-
+//**************************************************************
 class TodayViewController: UIViewController, NCWidgetProviding {
     var simpleMode = true
     var btns_field: [UIButton] = []
@@ -30,6 +31,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     var cover = UILabel()
     let color = UIColor.black
     var pickedIdx = -1
+    let minrownum = 4
+    let maxrownum = 7
     let f = CGFloat(8)
     var h = CGFloat(33)
     var _w = 0
@@ -49,10 +52,22 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             _w = Int(newValue)
         }
     }
-    var n: Int{
+    var rownum: Int{
         get{
-            let n = Storage.strs.count
-            return n < 4 ? 4 : n
+            var n = Storage.strs.count
+            n =  n > maxrownum ? maxrownum : n
+            return n < minrownum ? minrownum : n
+        }
+    }
+    var dataChanged: Bool{
+        get{
+            if(Storage.strs.count < minrownum){
+                return minrownum == btns_field.count
+            }else if(Storage.strs.count > maxrownum){
+                return maxrownum == btns_field.count
+            }else{
+                return btns_field.count != Storage.strs.count
+            }
         }
     }
     func getStr(_ idx: Int)->String{
@@ -67,14 +82,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
         return ""
     }
-    func setSample(){
+    // MARK: - Init Content
+    func initSample(){
         samp_btn_field.setTitleColor(color, for: .normal)
         samp_btn_field.addTarget(self, action: #selector(pasteItem(_:)), for: .touchUpInside)
         samp_btn_field.titleEdgeInsets.left = f
         samp_btn_field.titleEdgeInsets.right = f
         samp_btn_field.titleLabel?.lineBreakMode = .byTruncatingTail
-        
-        
+        //----------------------------------
         samp_btn_paste.setImage(UIImage(named: "paste")?.withRenderingMode(.alwaysTemplate), for: .normal)
         samp_btn_paste.contentVerticalAlignment = .fill
         samp_btn_paste.contentHorizontalAlignment = .fill
@@ -83,8 +98,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         samp_btn_paste.setTitleColor(color, for: .normal)
         samp_btn_paste.addTarget(self, action: #selector(pasteItem(_:)), for: .touchUpInside)
     }
-
-    func setCurrentLabel(){
+    func initCurrentLabel(){
         lbl_current.frame = CGRect(
             x: f,
             y: f,
@@ -92,11 +106,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             height: h
         )
         view.addSubview(lbl_current)
+        lbl_current.text = clipBoardText
         lbl_current.backgroundColor = nil
         lbl_current.textAlignment = .center
         lbl_current.textColor = color
         lbl_current.font = UIFont.systemFont(ofSize: 17)
-        lbl_current.text = clipBoardText
         lbl_current.setBoarder(color.cgColor, h/4)
         lbl_current.isHidden = simpleMode
         lbl_current.picked(true)
@@ -105,7 +119,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         lbl_current.textContainer.maximumNumberOfLines = 1
         lbl_current.textContainer.lineBreakMode = .byTruncatingTail
         lbl_current.isEditable = false
-        
         btn_current.frame = CGRect(
             x: f,
             y: f,
@@ -115,57 +128,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         btn_current.addTarget(self, action: #selector(openApp(_:)), for: .touchUpInside)
         view.addSubview(btn_current)
     }
-    
-    func setItem(idx: Int, str: String){
-        let i = CGFloat(idx+1)
-        let container: UIView = btns_field[idx].superview!
-        let btn_field = container.subviews[0] as! UIButton
-        let btn_paste = container.subviews[1] as! UIButton
-        if(simpleMode){
-            let i_mod = (idx)%2
-            let i_div = floor(CGFloat((idx)/2))
-            container.frame = CGRect(
-                x: (i_mod == 0 ? f : w/2+f/2),
-                y: f+(h+f)*i_div,
-                width: w/2-f/2*3,
-                height: h
-            )
-            
-            btn_field.frame = CGRect(
-                x: 0,
-                y: 0,
-                width: container.frame.width,
-                height: h
-            )
-            btn_field.setTitle(str, for: .normal)
-            
-            btn_paste.isHidden = true
-        }else{
-            container.frame = CGRect(
-                x: f,
-                y: f+(h+f)*i,
-                width: w-f*2,
-                height: h
-            )
-            
-            btn_field.frame = CGRect(
-                x: 0,
-                y: 0,
-                width: container.frame.width-f-h,
-                height: h
-            )
-            btn_field.setTitle(str, for: .normal)
-            
-            btn_paste.frame = CGRect(
-                x: container.frame.width-h,
-                y: 0,
-                width: h,
-                height: h
-            )
-            btn_paste.isHidden = false
+    func initItems(){
+        clear()
+        initCurrentLabel()
+        for _ in 0..<rownum{
+            addItem(str: "")
         }
     }
-    
     func addItem(str: String){
         let idx = btns_field.count
         let container: UIView = UIView()
@@ -183,23 +152,75 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         container.addSubview(btn_paste)
         //-----------------------------------------
     }
-    
+    func clear(){
+        for v in view.subviews{
+            v.removeFromSuperview()
+        }
+        btns_field.removeAll()
+    }
+    // MARK: - Set Content
     func setItems(){
+        if(dataChanged){
+            initItems()
+        }
         for idx in 0..<btns_field.count{
             setItem(idx: idx, str: getStr(idx))
         }
         lbl_current.isHidden = simpleMode
         btn_current.isHidden = simpleMode
     }
-    
-    func initItems(){
-        clear()
-        setCurrentLabel()
-        for _ in 0..<n{
-            addItem(str: "")
+    func setItem(idx: Int, str: String){
+        let i = CGFloat(idx+1)
+        let container: UIView = btns_field[idx].superview!
+        let btn_field = container.subviews[0] as! UIButton
+        let btn_paste = container.subviews[1] as! UIButton
+        if(simpleMode){
+            let i_mod = (idx)%2
+            let i_div = floor(CGFloat((idx)/2))
+            container.frame = CGRect(
+                x: (i_mod == 0 ? f : w/2+f/2),
+                y: f+(h+f)*i_div,
+                width: w/2-f/2*3,
+                height: h
+            )
+            btn_field.frame = CGRect(
+                x: 0,
+                y: 0,
+                width: container.frame.width,
+                height: h
+            )
+            btn_field.setTitle(str, for: .normal)
+            btn_paste.isHidden = true
+        }else{
+            container.frame = CGRect(
+                x: f,
+                y: f+(h+f)*i,
+                width: w-f*2,
+                height: h
+            )
+            btn_field.frame = CGRect(
+                x: 0,
+                y: 0,
+                width: container.frame.width-f-h,
+                height: h
+            )
+            btn_field.setTitle(str, for: .normal)
+            btn_paste.frame = CGRect(
+                x: container.frame.width-h,
+                y: 0,
+                width: h,
+                height: h
+            )
+            btn_paste.isHidden = false
         }
     }
-    
+    func refresh(){
+        load()
+        setItems()
+        initCurrentLabel()
+        checkMatch()
+    }
+    // MARK: - View & Data
     func hint(_ str: String){
         cover.text = str
         cover.textColor = UIColor.white
@@ -214,30 +235,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             
         }
     }
-    
-    func clear(){
-        for v in view.subviews{
-            v.removeFromSuperview()
-        }
-        btns_field.removeAll()
-    }
-    
-    func save(){
-        Storage.strs = []
-        for btn in btns_field{
-            Storage.strs.append(btn.title(for: .normal)!)
-        }
-        Storage.saveToShare()
-
-    }
-    
-    func refresh(){
-        checkMatch()
-        setCurrentLabel()
-        Storage.readItemsFromShare()
-        setItems()
-    }
-    
     func checkMatch(){
         if(!simpleMode){
             clearPicked()
@@ -261,14 +258,23 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             }
         }
     }
-    
     func clearPicked(){
         pickedIdx = -1
         for btn in btns_field{
             btn.picked(false)
         }
     }
-
+    func save(){
+        Storage.strs = []
+        for btn in btns_field{
+            Storage.strs.append(btn.title(for: .normal)!)
+        }
+        Storage.saveToShare()
+    }
+    func load(){
+        Storage.readItemsFromShare()
+    }
+    // MARK: - Signal
     @objc func openApp(_ sender: Any?) {
         let url = URL(string: "MultiClipboard://")!
         self.extensionContext?.open(url, completionHandler: nil)
@@ -311,13 +317,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             lbl_current.hint("Switched!")
         }
     }
-    
-    
+    // MARK: - Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
         // Do any additional setup after loading the view from its nib.
-        setSample()
+        load()
+        initSample()
         initItems()
     }
     
@@ -327,16 +333,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
-        let minrownum = 4
-        let maxrownum = 7
-        var rownum = n + 1
-        if minrownum > rownum { rownum = minrownum}
-        if maxrownum < rownum { rownum = maxrownum}
         if activeDisplayMode == .expanded {
             h = CGFloat(33)
             simpleMode = false
-            self.preferredContentSize = CGSize(width: maxSize.width, height: (h+f)*CGFloat(rownum)+f)
-            
+            self.preferredContentSize = CGSize(width: maxSize.width, height: (h+f)*CGFloat(rownum+1)+f)
         }else{
             h = CGFloat(44)
             self.preferredContentSize = CGSize(width: maxSize.width, height: 2*h + 4*f)
