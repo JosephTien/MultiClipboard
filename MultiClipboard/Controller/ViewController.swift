@@ -372,7 +372,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let path = String(nodes[0])
         for param in nodes[1].split(separator: "&"){
             let comps = param.split(separator: "=")
-            if(comps.count<2){return}
+            if(comps.count<2){continue}
             if String(comps[0]) == "id"{
                 uuid = String(comps[1])
             }
@@ -397,7 +397,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         socket?.connect()
     }
-    
     func shareClip(){
         if(linked){
             socket?.emit("clipboard", ["uuid":uuid, "str": clipTextView.text!, "src": "app"] )
@@ -456,5 +455,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             clipManuView?.removeFromSuperview()
             clipManuView = nil
         }
+    }
+    func alert(_ str: String){
+        let alert = UIAlertController(
+            title: str,
+            message: "",
+            preferredStyle: .alert)
+        alert.addAction(
+            UIAlertAction(
+                title: "取消",
+                style: .cancel){(action: UIAlertAction!) -> Void in}
+        )
+        self.present(
+            alert,
+            animated: false,
+            completion: nil
+        )
     }
 }

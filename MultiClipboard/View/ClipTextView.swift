@@ -14,7 +14,6 @@ class ClipTextView: UITextView{
         )
         text = VC.clipBoardText
         textAlignment = .center
-        textContainer.lineBreakMode = .byTruncatingTail
         font = UIFont.systemFont(ofSize: 17)
         //layer.borderWidth = 1
         //layer.cornerRadius = D.cornerRadius
@@ -25,7 +24,6 @@ class ClipTextView: UITextView{
             bottom: D.space,
             right: D.space
         )
-        textContainer.lineBreakMode = .byCharWrapping
         isEditable = false
         
     }
