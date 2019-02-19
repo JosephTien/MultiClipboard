@@ -29,7 +29,7 @@ class ClipManuView: UIView {
         
         Press list item to use the content.
         Long press to go to the website
-        if the string is a url link.
+        if the content is a url link.
         
         MultiClipboard support Today Widget.
         In the full mode of Today Widget,
