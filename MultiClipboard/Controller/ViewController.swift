@@ -115,6 +115,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         width: D.screenWidth,
         height: D.screenHeight - y_clipTableView
     )
+    var clipManuView: ClipManuView? = nil
     //--------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -415,7 +416,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func manualKeyIn(handler: @escaping (String)->()) {
         let keyinController = UIAlertController(
-            title: "手動輸入",
+            title: "Manual Key In",
             message: "",
             preferredStyle: .alert)
         
@@ -447,5 +448,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func showManu(){
         
+        if(clipManuView==nil){
+            clipManuView = ClipManuView(frame: self.view.bounds)
+            self.view.addSubview(clipManuView!)
+            view.addSubview(clipButton_manu)
+        }else{
+            clipManuView?.removeFromSuperview()
+            clipManuView = nil
+        }
     }
 }

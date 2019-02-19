@@ -25,7 +25,9 @@ class ClipTextView: UITextView{
             bottom: D.space,
             right: D.space
         )
+        textContainer.lineBreakMode = .byCharWrapping
         isEditable = false
+        
     }
     
 }

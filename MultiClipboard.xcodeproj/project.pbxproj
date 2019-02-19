@@ -28,6 +28,7 @@
 		7C1B314121F23F30009721C9 /* ClipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B314021F23F30009721C9 /* ClipButton.swift */; };
 		7C1B314421F26411009721C9 /* Addon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B314321F26411009721C9 /* Addon.swift */; };
 		7C1B314621F26DB4009721C9 /* UIView+Borders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B314521F26DB4009721C9 /* UIView+Borders.swift */; };
+		7C31F7BA221B42BA00F41D2E /* ClipManuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C31F7B9221B42BA00F41D2E /* ClipManuView.swift */; };
 		7C81D25521EFA2F5003CF011 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C81D25421EFA2F5003CF011 /* Assets.xcassets */; };
 		7CBE724C2214C63200824FFD /* QRScaner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBE724B2214C63200824FFD /* QRScaner.swift */; };
 		7DBD839B2E1AD1DA8F531AD3 /* Pods_MultiClipboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841E48845D9914E4494BC2CB /* Pods_MultiClipboard.framework */; };
@@ -106,6 +107,7 @@
 		7C1B314021F23F30009721C9 /* ClipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipButton.swift; sourceTree = "<group>"; };
 		7C1B314321F26411009721C9 /* Addon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Addon.swift; sourceTree = "<group>"; };
 		7C1B314521F26DB4009721C9 /* UIView+Borders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Borders.swift"; sourceTree = "<group>"; };
+		7C31F7B9221B42BA00F41D2E /* ClipManuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipManuView.swift; sourceTree = "<group>"; };
 		7C81D25421EFA2F5003CF011 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CBE724B2214C63200824FFD /* QRScaner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScaner.swift; sourceTree = "<group>"; };
 		841E48845D9914E4494BC2CB /* Pods_MultiClipboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MultiClipboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,6 +261,7 @@
 				7C1B313821F12C38009721C9 /* ClipTableView.swift */,
 				7C1B313E21F1310F009721C9 /* ClipTableViewCell.swift */,
 				7C1B314021F23F30009721C9 /* ClipButton.swift */,
+				7C31F7B9221B42BA00F41D2E /* ClipManuView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C0CC6C921ECE9950046F806 /* AppDelegate.swift in Sources */,
+				7C31F7BA221B42BA00F41D2E /* ClipManuView.swift in Sources */,
 				7C1B314121F23F30009721C9 /* ClipButton.swift in Sources */,
 				7C1B313721F12C29009721C9 /* ClipTextView.swift in Sources */,
 				7C1B313921F12C38009721C9 /* ClipTableView.swift in Sources */,
