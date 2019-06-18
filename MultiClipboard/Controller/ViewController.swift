@@ -426,12 +426,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let tf = ((keyinController.textFields?.first)! as UITextField)
         keyinController.addAction(
             UIAlertAction(
-                title: "取消",
+                title: "Cancel",
                 style: .cancel){(action: UIAlertAction!) -> Void in}
             )
         keyinController.addAction(
             UIAlertAction(
-                title: "確定",
+                title: "Confirm",
                 style: UIAlertAction.Style.default,
                 handler: {(action: UIAlertAction!) -> Void in
                     handler(tf.text!)
@@ -463,7 +463,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             preferredStyle: .alert)
         alert.addAction(
             UIAlertAction(
-                title: "取消",
+                title: "Cancel",
                 style: .cancel){(action: UIAlertAction!) -> Void in}
         )
         self.present(

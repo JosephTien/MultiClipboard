@@ -5,7 +5,7 @@ class Storage{
     static var strs: [String] = []
     static var userDefaults: UserDefaults?{
         get{
-            return UserDefaults(suiteName: "group.com.jtien.MultiClipboard")
+            return UserDefaults(suiteName: "group.com.jtien.clipboard")
         }
     }
     static func saveToShare(){
@@ -338,8 +338,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             simpleMode = false
             self.preferredContentSize = CGSize(width: maxSize.width, height: (h+f)*CGFloat(rownum+1)+f)
         }else{
-            h = CGFloat(44)
-            self.preferredContentSize = CGSize(width: maxSize.width, height: 2*h + 4*f)
+            //h = CGFloat(44)
+            h = (maxSize.height - 3*f) / CGFloat(2)
+            self.preferredContentSize = CGSize(width: maxSize.width, height: 2*h + 3*f)
             simpleMode = true
         }
         //--------------------------------------------

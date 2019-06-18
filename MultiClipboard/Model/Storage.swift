@@ -7,7 +7,7 @@ struct Storage: Codable{
     static let propertyEncoder = PropertyListEncoder()
     static var userDefaults: UserDefaults?{
         get{
-            return UserDefaults(suiteName: "group.com.jtien.MultiClipboard")
+            return UserDefaults(suiteName: "group.com.jtien.clipboard")
         }
     }
     static func saveToFile() {
